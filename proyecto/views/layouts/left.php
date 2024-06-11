@@ -19,7 +19,7 @@
                             'icon' => 'user-secret',
                             'url' => '#',
                             'items' => [
-                                ['label' => 'Registro', 'iconType' => 'far', 'icon' => 'arrow-right', 'url' => ['/categorias/index']],
+                                ['label' => 'Registro', 'url' => ['/categorias/index']],
                                 //['label' => 'Histórico de Visitas', 'iconType' => 'far', 'icon' => 'arrow-right', 'url' => ['/boleta-detalle/indexhistorico']],
                                 // ['label' => 'Estados de Boleta', 'iconType' => 'far', 'icon' => 'arrow-right', 'url' => ['/boleta-estado'],'badge' => '<span class="badge badge-info right">3</span>',],
                             ],
@@ -29,7 +29,7 @@
                             'icon' => 'user',
                             'url' => '#',
                             'items' => [
-                                ['label' => 'Registro', 'iconType' => 'far', 'icon' => 'arrow-right', 'url' => ['/programas/index'],],
+                                ['label' => 'Registro', 'url' => ['/programas/index'],],
                                 //['label' => 'Restricción de Acceso', 'iconType' => 'far', 'icon' => 'arrow-right', 'url' => ['/lista-negra'],],
                                 // ['label' => 'Naturaleza del visitante', 'iconType' => 'far', 'icon' => 'arrow-right', 'url' => ['/persona-tipo'],],
                             ],
