@@ -56,7 +56,7 @@ $this->title = 'Login';
         <!-- /.social-auth-links -->
 
         <p class="mb-1">
-            <a href=<?= Url::toRoute("site/cambio")?>>Olvide mi contraseña</a>
+            <a href=<?= Url::toRoute("site/request-password-reset")?>>Olvide mi contraseña</a>
         </p>
 
     </div>
