@@ -17,14 +17,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'nombre') ?>
-
-    <?= $form->field($model, 'descripcion') ?>
-
-    <?= $form->field($model, 'estado') ?>
-
-    <?= $form->field($model, 'fecha_inicio') ?>
-
     <?php // echo $form->field($model, 'fecha_fin') ?>
 
     <?php // echo $form->field($model, 'fecha_creacion') ?>
@@ -32,8 +24,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'fecha_actualizacion') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
+
     </div>
 
     <?php ActiveForm::end(); ?>

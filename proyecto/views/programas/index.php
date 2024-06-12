@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Registrar Programa', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <p> <?php echo $this->render('_search', ['model' => $searchModel]); ?> </p>
 
     <?= GridView::widget([
         'id' => 'kv-grid-demo', // Añadido el 'id'
@@ -62,8 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'type' => 'primary',
             'before' => '<div style="padding-top: 7px;"></div>',
         ],
-        'toolbar' => [], // Sin elementos de barra de herramientas
-        'export' => [], // Sin opciones de exportación
+
     ]); ?>
 
 </div>
