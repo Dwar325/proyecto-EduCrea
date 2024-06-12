@@ -24,7 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Registrar Programa', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <!-- Eliminado el render del _search -->
 
     <?= GridView::widget([
         'id' => 'kv-grid-demo', // Añadido el 'id'
