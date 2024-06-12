@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\PasswordResetRequestForm;
 
 class SiteController extends Controller
 {
@@ -105,6 +106,7 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -124,5 +126,20 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    public function actionRequestPasswordReset()
+    {
+        $this->layout = 'main-request-password-reset';
+        $model = new PasswordResetRequestForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            Yii::$app->session->setFlash('success', 'Revisa tu correo electrónico para obtener más instrucciones.');
+            return Yii::$app->response->redirect(['site/login']);
+        }
+
+        return $this->render('requestPasswordResetToken', [
+            'model' => $model,
+        ]);
+
     }
 }
