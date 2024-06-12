@@ -2,14 +2,8 @@
 
 namespace app\models;
 
-use app\models\Usuarios;
 use Yii;
 use yii\base\Model;
-use yii\web\IdentityInterface;
-use yii\web\User;
-
-// use stmswitcher\Yii2LdapAuth\Model\LdapUser;
-
 
 /**
  * LoginForm is the model behind the login form.
@@ -21,10 +15,8 @@ class LoginForm extends Model
 {
     public $username;
     public $password;
-    public array $oficinas;
-    public string $oficina;
-    public string $dependencia;
     public $rememberMe = true;
+
     private $_user = false;
 
 
@@ -43,14 +35,6 @@ class LoginForm extends Model
         ];
     }
 
-
-    public function attributeLabels()
-    {
-        return [
-            'rememberMe' => 'Recuerdame',
-        ];
-    }
-
     /**
      * Validates the password.
      * This method serves as the inline validation for password.
@@ -58,14 +42,13 @@ class LoginForm extends Model
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
      */
-
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $user = LdapCerbero::findIdentity($this->username);
-            if (!$user || !Yii::$app->ldapAuth->authenticate($user->getDn(), $this->password)) {
-                Yii::$app->session->setFlash('warning', 'Contraseña Incorrecta');
-                $this->addError($attribute,);
+            $user = $this->getUser();
+
+            if (!$user || !$user->validatePassword($this->password)) {
+                $this->addError($attribute, 'Incorrect username or password.');
             }
         }
     }
@@ -76,76 +59,23 @@ class LoginForm extends Model
      */
     public function login()
     {
-        /**@var Usuarios $usuario */
-        $usuario = Usuarios::find()->where(['nombre'=>$this->username])->one();
-        if (!isset($usuario)) {
-            Yii::$app->session->setFlash('error','Usuario no encontrado');
-            return false;
-        }
-        //$apl = Aplicacion::find()->where(['apl_vcNombre'=> Yii::$app->name])->one();
-        //$useapl = UsuarioAplicacion::find()->where(['usu_iCodigo'=>$usuario->usu_iCodigo])->andWhere(['apl_iCodigo'=>$apl->apl_iCodigo])->one();
-        /*if(!isset($useapl)){
-            Yii::$app->session->setFlash('error','Usuario no registrado en la Aplicación');
-            return false;
-        }*/
-        /*
         if ($this->validate()) {
-            $oficinas = $usuario->usuarioOficinas;
-            if (!$oficinas || count($oficinas)==0){
-                Yii::$app->session->setFlash('warning','El usuario necesita ser registrado en alguna Oficina, pongase en contacto con su administrador');
-                return false;
-            }
-            Yii::$app->session->set('oficinas',$oficinas);
-            Yii::$app->session->set('oficina',$oficinas[0]->ofi_iCodigo);
-            return Yii::$app->user->login(
-                LdapCerbero::findIdentity($this->username), 0
-            );
-        }*/
-        return false;
-    }
-
-    public function user()
-    {
-
-        $user = Usuarios::find()->where(['nombre' => $this->username])->one();
-
-        if (isset($user)) {
-            $pass = strtoupper(sha1($this->password));
-
-            if ($user->contraseña == $pass) {
-                /*
-                $apl = Aplicacion::find()->where(['apl_vcNombre'=> Yii::$app->name])->one();
-                $useapl = UsuarioAplicacion::find()->where(['usu_iCodigo'=>$user->usu_iCodigo])->andWhere(['apl_iCodigo'=>$apl->apl_iCodigo])->one();
-                $oficinas = $user->usuarioOficinas;
-                Yii::$app->session->set('oficinas',$oficinas);
-                Yii::$app->session->set('oficina',$oficinas[0]->ofi_iCodigo);
-                if (isset($useapl)) {
-                    return Yii::$app->user->login(
-                        LdapCerbero::findIdentity($this->username), 0
-                    );
-                }
-                Yii::$app->session->setFlash('warning', 'No puede usar esta aplicacion');
-                return false;
-            }*/
-                Yii::$app->session->setFlash('error', 'Contraseña Incorrecta');
-                return false;
-            }
-            Yii::$app->session->setFlash('error', 'Usuario no encontrado');
-            return false;
-
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
+        return false;
     }
 
     /**
      * Finds user by [[username]]
      *
-     * @return IdentityInterface|User|null
+     * @return User|null
      */
-    /*public function getUser()
+    public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = LdapCerbero::findIdentity($this->username);
+            $this->_user = User::findByUsername($this->username);
         }
+
         return $this->_user;
-    }*/
+    }
 }

@@ -25,7 +25,7 @@ dmstr\adminlte\web\AdminLteAsset::register($this);
 
 <div class="login-box">
     <div class="login-logo">
-        <?= Html::a('<strong>Proyecto</strong>', ['/site/login']); ?>
+        <?= Html::a('<strong>EduCrea</strong>', ['/site/login']); ?>
     </div>
 
     <?= \dmstr\adminlte\widgets\Alert::widget(); ?>

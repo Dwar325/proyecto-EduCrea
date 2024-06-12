@@ -12,7 +12,7 @@ $this->title = 'Login';
 
 <div class="card">
     <div class="card-body login-card-body">
-        <p class="login-box-msg">Ingrese su email y password para iniciar sesion</p>
+        <p class="login-box-msg">Ingrese sus credenciales</p>
 
         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
@@ -25,7 +25,7 @@ $this->title = 'Login';
             ]
         ])
             ->label(false)
-            ->textInput(['placeholder' => $model->getAttributeLabel('email')]); ?>
+            ->textInput(['placeholder' => $model->getAttributeLabel('username')]); ?>
 
         <?= $form->field($model, 'password', [
             'options' => ['class' => 'form-group has-feedback'],
