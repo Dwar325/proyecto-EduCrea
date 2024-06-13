@@ -34,7 +34,7 @@ switch ($estado) {
             <small class="text-muted">Mentor:  </small><br>
             <small class="text-muted">Supervisor: </small>
         </div>
-        <a href="#" class="card-link">Ver Detalles</a>
+        <a href="<?= Url::to(['programas/view', 'id' => $model->id]) ?>" class="card-link">Ver Detalles</a>
     </div>
 </div>
 
