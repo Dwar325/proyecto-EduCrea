@@ -30,6 +30,7 @@
                             'url' => '#',
                             'items' => [
                                 ['label' => 'Registro', 'url' => ['/programas/index'],],
+                                ['label' => 'Progreso', 'url' => ['programas/progress']]
                                 //['label' => 'Restricción de Acceso', 'iconType' => 'far', 'icon' => 'arrow-right', 'url' => ['/lista-negra'],],
                                 // ['label' => 'Naturaleza del visitante', 'iconType' => 'far', 'icon' => 'arrow-right', 'url' => ['/persona-tipo'],],
                             ],

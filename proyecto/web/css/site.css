@@ -86,3 +86,43 @@ a.desc:after {
 .form-group {
     margin-bottom: 1rem;
 }
+
+.vprogress {
+    height: 25px;
+    background-color: #EAEEF2;
+    border-radius: 0.5rem;
+}
+
+.vprogress-bar {
+    height: 25px;
+    background-color: #12CE66;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 0.5rem;
+
+}
+
+
+.card-title .badge {
+    text-transform: capitalize;
+}
+
+.card {
+    border-radius: 0.5rem;
+}
+
+.card-body {
+    position: relative;
+}
+
+.card-link {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+}
+.card-body {
+    position: relative;
+}
+
+

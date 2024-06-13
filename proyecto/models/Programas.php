@@ -87,4 +87,22 @@ class Programas extends \yii\db\ActiveRecord
     {
         return new ProgresoQuery(get_called_class());
     }
+
+    public function getProgress()
+    {
+        if ($this->fecha_inicio && $this->fecha_fin) {
+            $start = strtotime($this->fecha_inicio);
+            $end = strtotime($this->fecha_fin);
+            $now = time();
+
+            if ($now < $start) return 0;
+            if ($now > $end) return 100;
+
+            $duration = $end - $start;
+            $progress = $now - $start;
+
+            return ($progress / $duration) * 100;
+        }
+        return 0;
+    }
 }
