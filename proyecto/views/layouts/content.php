@@ -158,5 +158,5 @@ use dmstr\adminlte\widgets\Alert;
     <div class="float-right d-none d-sm-block">
         <b>Version</b> 1.0
     </div>
-    <strong>Copyright © Bertello 2024</strong>
+    <strong>Copyright © Bertell 2024</strong>
 </footer>
