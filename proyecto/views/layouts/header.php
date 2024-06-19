@@ -33,16 +33,19 @@ use yii\helpers\Url;
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
-                <li class="user-header bg-primary">
-                    <img src="<?= Url::to('@web/images/user.jpg') ?>" class="img-size-50 img-circle mr-3"
-                         alt="Usuario">
+                <li class="user-header bg-gradient-lightblue">
+                    <img src="<?= Url::to('@web/images/user.jpg') ?>" class="img-circle" alt="User Image">
+                    <p>
+                        <strong><?= Html::encode(Yii::$app->user->identity->username) ?></strong>
+                        <small><?= Html::encode(Yii::$app->user->identity->email) ?></small>
+                    </p>
                 </li>
                 <!-- Menu Body -->
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
                     <?= Html::a(
-                        'Sign out',
+                        'Desconectar',
                         ['/site/logout'],
                         ['data-method' => 'post', 'class' => 'btn btn-default btn-flat float-right']
                     ) ?>

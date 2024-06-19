@@ -1,21 +1,25 @@
 <?php
 
+/* @var $this yii\web\View */
+/* @var $form yii\bootstrap4\ActiveForm */
+/* @var $model app\models\LoginForm */
+
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
-use yii\helpers\Url;
 
-/** @var \yii\web\View $this */
-/** @var \app\models\LoginForm $model */
 
 $this->title = 'Login';
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
-
-<div class="card">
-    <div class="card-body login-card-body">
-        <p class="login-box-msg">Ingrese sus credenciales</p>
-
-        <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-
+<div class="card card-outline card-primary">
+    <div class="card-header text-center login-logo">
+        <h1><?= Html::a('<b>EduCrea</b>', ['/site/login']); ?></h1>
+    </div>
+    <div class="card-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+        <?php $form = ActiveForm::begin([
+            'id' => 'login-form',
+        ]); ?>
         <?= $form->field($model, 'username', [
             'options' => ['class' => 'form-group has-feedback'],
             'inputTemplate' => '{input}<div class="input-group-append"><div class="input-group-text"><i class="fas fa-envelope"></i></div></div>',
@@ -25,8 +29,7 @@ $this->title = 'Login';
             ]
         ])
             ->label(false)
-            ->textInput(['placeholder' => $model->getAttributeLabel('username')]); ?>
-
+            ->textInput(['placeholder' => 'Username', 'aria-required' => 'true']) ?>
         <?= $form->field($model, 'password', [
             'options' => ['class' => 'form-group has-feedback'],
             'inputTemplate' => '{input}<div class="input-group-append"><div class="input-group-text"><i class="fas fa-lock"></i></div></div>',
@@ -36,8 +39,7 @@ $this->title = 'Login';
             ]
         ])
             ->label(false)
-            ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]); ?>
-
+            ->passwordInput(['placeholder' => 'Password', 'aria-required' => 'true']) ?>
         <div class="row">
             <div class="col-8">
                 <div class="icheck-primary">
@@ -46,18 +48,24 @@ $this->title = 'Login';
             </div>
 
             <div class="col-4">
-                <?= Html::submitButton('Ingresar', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']); ?>
+                <?= Html::submitButton('Sign in', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']); ?>
             </div>
         </div>
-
         <?php ActiveForm::end(); ?>
-
-
-        <!-- /.social-auth-links -->
-
+        <div class="social-auth-links text-center mt-2 mb-3">
+            <a href="#" class="btn btn-block btn-primary">
+                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+            </a>
+            <a href="#" class="btn btn-block btn-danger">
+                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+            </a>
+        </div>
         <p class="mb-1">
-            <a href=<?= Url::toRoute("site/request-password-reset")?>>Olvide mi contraseña</a>
+            <?= Html::a('I forgot my password', ['site/request-password-reset']) ?>
         </p>
-
+        <p class="mb-0">
+            <?= Html::a('Register a new membership', ['site/register'], ['class' => 'text-center']) ?>
+        </p>
     </div>
 </div>
+

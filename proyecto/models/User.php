@@ -1,14 +1,27 @@
 <?php
 
 namespace app\models;
+use Yii;
+use yii\db\ActiveRecord;
+use yii\helpers\Url;
 
-class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
+    // public $id;
+    // public $username;
+    // public $password;
+    // public $mobile;
+    // public $gender;
+    // public $nationality;
     public $authKey;
     public $accessToken;
+
+    const STATUS_DELETED = 0;
+    const STATUS_ACTIVE = 10;
+
+    public static function tableName() {
+        return '{{%user}}';
+    }
 
     private static $users = [
         '100' => [
@@ -27,13 +40,17 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
         ],
     ];
 
+    public function setPassword($password)
+    {
+        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+    }
 
     /**
      * {@inheritdoc}
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -58,13 +75,17 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+    }
 
-        return null;
+    /**
+     * @inheritdoc
+     */
+    public function rules() {
+        return [
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+        ];
     }
 
     /**
@@ -83,6 +104,11 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
         return $this->authKey;
     }
 
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -99,6 +125,24 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
+    }
+
+
+    public function getPhotoInfo(){
+        $path=Url::to('@webroot/images/');
+        $url=Url::to('@web/images/');
+        $filename=strtolower($this->username).'.jpg';
+        $alt=$this->username."'s Profile Picture";
+
+        $imageInfo = ['alt'=>$alt];
+        if(file_exists($path.$filename)){
+            $imageInfo['url'] = $url.$filename;
+        }else{
+            $imageInfo['url'] = $url."user-placeholder.jpg";
+        }
+        return $imageInfo;
+
+
     }
 }

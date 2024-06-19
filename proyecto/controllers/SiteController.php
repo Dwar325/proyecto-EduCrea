@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -21,10 +22,14 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['login', 'register', 'request-password-reset'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'actions' => ['logout', 'index', 'error'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -72,6 +77,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout='main-login';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -79,12 +85,36 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
+        } else {
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Displays register page.
+     *
+     * @return Response|string
+     */
+    public function actionRegister()
+    {
+        $this->layout='main-login';
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($user = $model->signup()) {
+
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
+            }
         }
 
-        $model->password = '';
-        return $this->render('login', [
+        return $this->render('register', [
             'model' => $model,
         ]);
+
     }
 
     /**
@@ -106,7 +136,6 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -127,6 +156,14 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+
+
+    /**
+     * Requests password reset.
+     *
+     * @return Response|string
+     */
     public function actionRequestPasswordReset()
     {
         $this->layout = 'main-request-password-reset';
@@ -140,6 +177,5 @@ class SiteController extends Controller
         return $this->render('requestPasswordResetToken', [
             'model' => $model,
         ]);
-
     }
 }

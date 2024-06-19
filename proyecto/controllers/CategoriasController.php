@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\Categorias;
 use app\models\CategoriasSearch;
 use yii\web\Controller;
@@ -114,6 +115,17 @@ class CategoriasController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionListado()
+    {
+        $searchModel = new CategoriasSearch();  // Asumiendo que tienes un modelo de búsqueda
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('listado', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**

@@ -33,7 +33,7 @@
         "symfony/dotenv": "*",
         "vlucas/phpdotenv": "*",
         "cebe/yii2-gravatar": "*",
-        "rmrevin/yii2-fontawesome": "*",
+        "rmrevin/yii2-fontawesome": "~3.5",
         "kartik-v/yii2-mpdf": "*",
         "stecman/symfony-console-completion": "*",
         "symfony/phpunit-bridge": "*",

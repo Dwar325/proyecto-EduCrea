@@ -26,8 +26,8 @@ switch ($estado) {
             <span class="badge <?= $badgeClass ?>"><?= $estado ?></span>
         </div>
         <h6 class="card-subtitle mb-2 text-muted">Del <?= Yii::$app->formatter->asDate($model->fecha_inicio) ?> al <?= Yii::$app->formatter->asDate($model->fecha_fin) ?></h6>
-        <div class="vprogress mb-2">
-            <div class="vprogress-bar" role="progressbar" style="width: <?= $model->getProgress() ?>%;" aria-valuenow="<?= $model->getProgress() ?>" aria-valuemin="0" aria-valuemax="100"><?= round($model->getProgress()) ?>%</div>
+        <div class="progress mb-2">
+            <div class="progress-bar" role="progressbar" style="width: <?= $model->getProgress() ?>%;" aria-valuenow="<?= $model->getProgress() ?>" aria-valuemin="0" aria-valuemax="100"><?= round($model->getProgress()) ?>%</div>
         </div>
         <p class="card-text"><?= Html::encode($model->descripcion) ?></p>
         <div class="mb-2">

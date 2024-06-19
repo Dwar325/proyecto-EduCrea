@@ -20,6 +20,7 @@
                             'url' => '#',
                             'items' => [
                                 ['label' => 'Registro', 'url' => ['/categorias/index']],
+                                ['label' => 'Listado', 'url' => ['/categorias/listado']],
                                 //['label' => 'Histórico de Visitas', 'iconType' => 'far', 'icon' => 'arrow-right', 'url' => ['/boleta-detalle/indexhistorico']],
                                 // ['label' => 'Estados de Boleta', 'iconType' => 'far', 'icon' => 'arrow-right', 'url' => ['/boleta-estado'],'badge' => '<span class="badge badge-info right">3</span>',],
                             ],

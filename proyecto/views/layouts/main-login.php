@@ -1,11 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+use yii\web\View;
 
-/** @var \yii\web\View $this */
+/** @var View $this */
 /** @var string $content */
 
 dmstr\adminlte\web\AdminLteAsset::register($this);
+rmrevin\yii\fontawesome\CdnFreeAssetBundle::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -19,14 +21,10 @@ dmstr\adminlte\web\AdminLteAsset::register($this);
     <?php $this->head() ?>
 </head>
 
-<body class="login-page">
-
+<body class="hold-transition login-page">
 <?php $this->beginBody() ?>
 
 <div class="login-box">
-    <div class="login-logo">
-        <?= Html::a('<strong>EduCrea</strong>', ['/site/login']); ?>
-    </div>
 
     <?= \dmstr\adminlte\widgets\Alert::widget(); ?>
 
