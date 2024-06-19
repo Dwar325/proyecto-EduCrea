@@ -5,7 +5,7 @@
 ?>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <?= \yii\helpers\Html::a('<img class="brand-image img-circle elevation-3" src="' . ($directoryAsset . '/img/AdminLTELogo.png') . '" alt="APP"><span class="brand-text font-weight-light">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'brand-link']) ?>
+    <?= \yii\helpers\Html::a('<img src="../images/logo.png" style="display: block; margin: 0 auto; width: 150px; height: auto;" alt="APP">', Yii::$app->homeUrl, ['class' => 'brand-link']) ?>
     <div class="sidebar">
 
         <nav class="mt-2">

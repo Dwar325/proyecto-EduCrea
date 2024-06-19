@@ -21,7 +21,12 @@ rmrevin\yii\fontawesome\CdnFreeAssetBundle::register($this);
     <?php $this->head() ?>
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-image: linear-gradient(rgba(100, 100, 100, 0.5), rgba(0, 0, 0, 0.7)),
+            url('../images/ninos.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;">
+
 <?php $this->beginBody() ?>
 
 <div class="login-box">

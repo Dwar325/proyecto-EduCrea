@@ -6,9 +6,9 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron text-center bg-transparent mt-5 mb-5">
-        <h1 class="display-4">Bienvenido!</h1>
-
+    <div class="jumbotron text-center bg-transparent">
+        <h1 class="display-4">Bienvenido a</h1>
+        <img src="../images/fondito.png" style="display: block; margin: 0 auto; width: 500px; height: auto; padding: 50px ;opacity: 0.5;" alt="APP">
         <p class="lead">Software de registro de categorías y lecciones.</p>
 
 

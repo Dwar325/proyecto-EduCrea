@@ -29,14 +29,14 @@ class UserForm extends User
 
             ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Este usuario ya existe.'],
             ['username', 'string', 'min' => 4, 'max' => 255],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Este email ya existe.'],
 
             // ['password_hash', 'required', 'on' => 'insert'],
             // ['password_hash', 'string', 'min' => 8],

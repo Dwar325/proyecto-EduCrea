@@ -18,26 +18,26 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="card-body">
 
                         <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-                        <?= $form->field($model, 'username') ?>
+                        <?= $form->field($model, 'username')->label('Nombre de usuario') ?>
                         <?= $form->field($model, 'email') ?>
-                        <?= $form->field($model, 'password')->passwordInput()->hint('6 character minimum') ?>
-                        <?= $form->field($model, 'mobile') ?>
+                        <?= $form->field($model, 'password')->passwordInput()->hint('6 carácteres como mínimo')->label('Contraseña') ?>
+                        <?= $form->field($model, 'mobile')->label('Número de teléfono') ?>
                         <?= $form->field($model, 'gender')->radioList([
-                            'Male' => 'Male',
-                            'Female' => 'Female'
-                        ]); ?>
+                            'Male' => 'Masculino',
+                            'Female' => 'Femenino'
+                        ])->label('Género'); ?>
 
                         <!-- <a href="#" data-toggle="dropdown" class="dropdown-toggle">Label <b class="caret"></b></a> -->
 
                         <?= $form->field($model, 'nationality')
                             ->dropDownList(
-                                ['sy' => 'Syrian' ,'fr' => 'French' ,'uk' => 'British' ] ,
-                                ['prompt'=>'Select a Nationalty'],     )
-                            ->label(false);
+                                ['pe' => 'Perú' ,'arg' => 'Argentina' ,'cl' => 'Chile' ] ,
+                                ['prompt'=>'Seleccione su país'],     )
+                            ->label(false)->label('Nacionalidad');
                         ?>
 
                         <div class="form-group">
-                            <?= Html::submitButton('Signup', ['class' => 'btn btn-primary btn-block', 'name' => 'signup-button']) ?>
+                            <?= Html::submitButton('Registrarse', ['class' => 'btn btn-primary btn-block', 'name' => 'signup-button']) ?>
                         </div>
                         <?php ActiveForm::end(); ?>
                     </div>

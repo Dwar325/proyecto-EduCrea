@@ -28,13 +28,13 @@ class SignupForm extends ActiveRecord
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => 'Este usuario ya existe.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => 'Este email ya existe.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],

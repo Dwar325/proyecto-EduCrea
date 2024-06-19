@@ -17,7 +17,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema prueba
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `prueba` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+CREATE SCHEMA IF NOT EXISTS `prueba` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
 USE `prueba` ;
 
 -- -----------------------------------------------------
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `prueba`.`categorias` (
     ENGINE = InnoDB
     AUTO_INCREMENT = 17
     DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_0900_ai_ci;
+    COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `prueba`.`lecciones` (
     REFERENCES `prueba`.`categorias` (`id`))
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_0900_ai_ci;
+    COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `prueba`.`programas` (
     ENGINE = InnoDB
     AUTO_INCREMENT = 15
     DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_0900_ai_ci;
+    COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `prueba`.`usuarios` (
     UNIQUE INDEX `email` (`email` ASC) VISIBLE)
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_0900_ai_ci;
+    COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `prueba`.`progreso` (
     REFERENCES `prueba`.`lecciones` (`id`))
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_0900_ai_ci;
+    COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `prueba`.`usuario_programa` (
     REFERENCES `prueba`.`usuarios` (`id`))
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_0900_ai_ci;
+    COLLATE = utf8mb4_general_ci;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
