@@ -7,6 +7,12 @@ use yii\helpers\Html;
 
 dmstr\adminlte\web\AdminLteAsset::register($this);
 ?>
+<body class="hold-transition login-page" style="background-image: linear-gradient(rgba(100, 100, 100, 0.5), rgba(0, 0, 0, 0.7)),
+            url('../images/alum.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;">
+            
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
