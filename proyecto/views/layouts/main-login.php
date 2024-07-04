@@ -22,7 +22,7 @@ rmrevin\yii\fontawesome\CdnFreeAssetBundle::register($this);
 </head>
 
 <body class="hold-transition login-page" style="background-image: linear-gradient(rgba(100, 100, 100, 0.5), rgba(0, 0, 0, 0.7)),
-            url('../images/ninos.jpg');
+            url('../images/alum.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;">
